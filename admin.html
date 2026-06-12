@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Gran Rifa Tech</title>
+
+<style>
+
+body{
+    background:#0f172a;
+    color:white;
+    font-family:Arial,sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+    margin:0;
+}
+
+.card{
+    background:#1e293b;
+    padding:30px;
+    border-radius:20px;
+    width:400px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    margin-bottom:15px;
+
+    border:none;
+    border-radius:10px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:15px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#38bdf8;
+    color:black;
+
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+#resultado{
+    margin-top:20px;
+    color:#4ade80;
+}
+
+#jsonGenerado{
+    width:100%;
+    height:180px;
+    margin-top:20px;
+    border-radius:10px;
+    padding:10px;
+    box-sizing:border-box;
+}
+
+#listaNumeros{
+
+    margin-top:20px;
+
+    max-height:250px;
+
+    overflow:auto;
+
+    background:#0f172a;
+
+    padding:15px;
+
+    border-radius:10px;
+
+}
+
+.itemNumero{
+
+    padding:8px;
+
+    margin-bottom:5px;
+
+    border-radius:8px;
+
+    background:#334155;
+
+}
+.tablero{
+
+    display:grid;
+
+    grid-template-columns:repeat(10,1fr);
+
+    gap:6px;
+
+    margin-top:20px;
+
+}
+
+.numeroBox{
+
+    text-align:center;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+}
+
+.libre{
+
+    background:#16a34a;
+
+}
+
+.vendido{
+
+    background:#dc2626;
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h1>💵 Admin Rifa Tech</h1>
+
+<label>Número</label>
+<input id="numero">
+
+<label>Nombre</label>
+<input id="nombre">
+
+<label>Teléfono</label>
+<input id="telefono">
+
+<button onclick="registrar()">
+REGISTRAR
+</button>
+
+<div id="resultado"></div>
+
+<textarea id="jsonGenerado"></textarea>
+
+<h2 id="contador">🎟️ Vendidos: 0</h2>
+<h2 id="recaudado">💵 Recaudado: $0</h2>
+
+<h2>📋 Números registrados</h2>
+
+<div id="listaNumeros">
+Cargando...
+</div>
+
+</div>
+
+<script>
+
+function registrar(){
+
+    const numero =
+        document.getElementById("numero").value;
+
+    const nombre =
+        document.getElementById("nombre").value;
+
+    const telefono =
+        document.getElementById("telefono").value;
+
+    const fecha =
+        new Date().toLocaleString();
+
+    const json = `
+"${numero}": {
+  "nombre": "${nombre}",
+  "telefono": "${telefono}",
+  "fecha": "${fecha}"
+}
+`;
+
+    document.getElementById("resultado")
+        .innerHTML =
+        "✅ Registro preparado";
+
+    document.getElementById("jsonGenerado")
+        .value = json;
+}
+
+async function cargarNumeros(){
+
+    try{
+
+        const respuesta =
+            await fetch("data.json");
+
+        const datos =
+            await respuesta.json();
+
+        let html = "";
+        let vendidos = 0;
+        const valorBoleto = 1;
+
+        for(const numero in datos){
+
+        vendidos++;
+
+            html += `
+            <div class="itemNumero">
+                🔴 ${numero} - ${datos[numero].nombre}
+            </div>
+            `;
+        }
+
+        if(html === ""){
+            html = "No hay registros todavía.";
+        }
+        document.getElementById("contador")
+        .innerHTML =
+        `🎟️ Vendidos: ${vendidos}`;
+        document.getElementById("recaudado")
+        .innerHTML =
+        `💵 Recaudado: $${vendidos * valorBoleto}`;
+        document.getElementById("listaNumeros")
+            .innerHTML = html;
+
+    }catch(error){
+
+        document.getElementById("listaNumeros")
+            .innerHTML =
+            "⚠️ No se pudo leer data.json";
+
+        console.error(error);
+
+    }
+}
+
+cargarNumeros();
+
+</script>
+
+</body>
+</html>
