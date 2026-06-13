@@ -91,3 +91,14 @@ body{
     width:90%;
     max-width:450px;
 }
+
+    .info-card{
+    background:#16243d;
+    width:80%;
+    margin:12px auto;
+    padding:12px;
+    border-radius:12px;
+    font-size:22px;
+    color:#40bfff;
+    font-weight:bold;
+}
