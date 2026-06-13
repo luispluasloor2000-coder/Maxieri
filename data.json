@@ -1,7 +1,7 @@
 {
-  "37": {
-    "nombre": "Juan Pérez",
-    "telefono": "0999999945",
+  "10": {
+    "nombre": "Erika Moran",
+    "telefono": "+50765254023",
     "fecha": "12/06/2026 14:00"
   },
 
@@ -9,13 +9,6 @@
     "nombre": "María López",
     "telefono": "0988888844",
     "fecha": "12/06/2026 13:20"
-  }
-
-  "10": {
-  "nombre": "Erika Moran",
-  "telefono": "+507 65254023",
-  "fecha": "12/6/2026, 9:18:49 p. m."
-
   }
 
 }
