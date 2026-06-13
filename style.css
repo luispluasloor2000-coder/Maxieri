@@ -116,3 +116,20 @@ body{
     border: 2px solid #3da9fc;
     box-shadow: 0 0 20px rgba(61,169,252,0.25);
 }
+
+.zona-premios{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:35px;
+}
+
+.premio-lateral{
+    background:#16243d;
+    padding:12px;
+    border-radius:12px;
+    min-width:70px;
+    text-align:center;
+    font-weight:bold;
+    color:#ffd700;
+}
