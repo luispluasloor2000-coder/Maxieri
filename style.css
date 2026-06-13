@@ -102,3 +102,12 @@ body{
     color:#40bfff;
     font-weight:bold;
 }
+
+.numero-suerte{
+    color:#ffd700;
+    font-weight:bold;
+    font-size:18px;
+    margin-top:5px;
+    margin-bottom:20px;
+    text-shadow:0 0 8px rgba(255,215,0,0.5);
+}

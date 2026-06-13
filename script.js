@@ -49,7 +49,7 @@ fetch("data.json")
         if (data[id]) {
 
     document.querySelector(".status").innerHTML =
-        "✅ REGISTRADO";
+        "🎉 PARTICIPANDO";
 
     document.getElementById("nombre").textContent =
         data[id].nombre;
