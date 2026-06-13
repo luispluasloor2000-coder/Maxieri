@@ -133,3 +133,12 @@ body{
     font-weight:bold;
     color:#ffd700;
 }
+.mascota{
+    text-align:center;
+    margin:20px 0;
+}
+
+.mascota img{
+    width:140px;
+    image-rendering:pixelated;
+}
